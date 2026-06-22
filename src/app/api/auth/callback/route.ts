@@ -6,7 +6,7 @@ export async function GET(request:Request){
   const code=searchParams.get('code')
   if(code){
     const c=await cookies()
-    const s=createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,{cookies:{getAll:()=>c.getAll(),setAll:(cs)=>cs.forEach(({name,value,options})=>c.set(name,value,options))}})
+    const s=createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,{cookies:{getAll:()=>c.getAll(),setAll:(cs: any)=>cs.forEach(({name,value,options})=>c.set(name,value,options))}})
     await s.auth.exchangeCodeForSession(code)
   }
   return NextResponse.redirect(`${origin}/dashboard`)
