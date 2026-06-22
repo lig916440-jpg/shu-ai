@@ -161,6 +161,17 @@ export default function ChatApp({user,initialCredits,models}:Props){
             {credits===0&&<Link href="/redeem" className="block mt-2 text-center text-[11px] text-[#7263ff] hover:underline">去充值 →</Link>}
           </div>
 
+          {/* Tools nav */}
+          <div className="p-3 border-b border-[#1b2030]">
+            <p className="text-[10px] text-[#565c70] uppercase tracking-[.08em] mb-2 px-1">AI 工具</p>
+            <Link href="/dashboard/image-gen" className="flex items-center gap-2 w-full px-3 py-[8px] rounded-[9px] text-[12.5px] text-[#8d93a8] hover:bg-[#161b29] hover:text-[#edeff7] transition-all duration-150 mb-1">
+              <span className="text-[16px]">🎨</span> 图片生成
+            </Link>
+            <Link href="/dashboard/video-gen" className="flex items-center gap-2 w-full px-3 py-[8px] rounded-[9px] text-[12.5px] text-[#8d93a8] hover:bg-[#161b29] hover:text-[#edeff7] transition-all duration-150">
+              <span className="text-[16px]">🎬</span> 视频生成
+            </Link>
+          </div>
+
           <div className="flex-1 overflow-y-auto p-3">
             <p className="text-[10px] text-[#565c70] uppercase tracking-[.08em] mb-3 px-1">对话记录</p>
             {sessions.length===0&&(
