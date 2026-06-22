@@ -3,6 +3,7 @@ import{useState,useEffect}from'react'
 import{useRouter}from'next/navigation'
 import Link from'next/link'
 import{createClient}from'@/lib/supabase/client'
+import ParticleCanvas from'@/components/dashboard/ParticleCanvas'
 
 const DURATIONS=[
   {label:'5 秒',value:5,cost:3},
@@ -71,9 +72,10 @@ export default function VideoGenPage(){
   )
 
   return(
-    <div style={{background:'#0a0d14',minHeight:'100vh',color:'#edeff7'}}>
-      <div className="fixed inset-0 pointer-events-none z-0" style={{backgroundImage:'linear-gradient(rgba(114,99,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(114,99,255,.03) 1px,transparent 1px)',backgroundSize:'56px 56px'}}/>
-      <div className="fixed pointer-events-none z-0" style={{width:500,height:500,top:-150,right:-150,borderRadius:'50%',background:'radial-gradient(circle,rgba(52,226,196,.07),transparent)',filter:'blur(60px)'}}/>
+    <div style={{background:'#080b12',minHeight:'100vh',color:'#edeff7'}}>
+      <ParticleCanvas/>
+      <div className="fixed inset-0 pointer-events-none z-0" style={{backgroundImage:'linear-gradient(rgba(114,99,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(114,99,255,.025) 1px,transparent 1px)',backgroundSize:'60px 60px'}}/>
+      <div className="fixed pointer-events-none z-0" style={{width:500,height:500,top:-150,right:-150,borderRadius:'50%',background:'radial-gradient(circle,rgba(52,226,196,.06),transparent)',filter:'blur(60px)'}}/>
 
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between px-5 py-3 border-b border-[#1b2030]" style={{background:'rgba(10,13,20,.92)',backdropFilter:'blur(20px)'}}>

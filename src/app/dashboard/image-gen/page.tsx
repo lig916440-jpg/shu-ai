@@ -3,6 +3,7 @@ import{useState,useEffect}from'react'
 import{useRouter}from'next/navigation'
 import Link from'next/link'
 import{createClient}from'@/lib/supabase/client'
+import ParticleCanvas from'@/components/dashboard/ParticleCanvas'
 
 const SIZES=[
   {label:'正方形 1:1',value:'1024x1024'},
@@ -58,10 +59,11 @@ export default function ImageGenPage(){
   )
 
   return(
-    <div style={{background:'#0a0d14',minHeight:'100vh',color:'#edeff7'}}>
+    <div style={{background:'#080b12',minHeight:'100vh',color:'#edeff7'}}>
+      <ParticleCanvas/>
       {/* Grid overlay */}
-      <div className="fixed inset-0 pointer-events-none z-0" style={{backgroundImage:'linear-gradient(rgba(114,99,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(114,99,255,.03) 1px,transparent 1px)',backgroundSize:'56px 56px'}}/>
-      <div className="fixed pointer-events-none z-0" style={{width:500,height:500,top:-150,left:-150,borderRadius:'50%',background:'radial-gradient(circle,rgba(114,99,255,.1),transparent)',filter:'blur(60px)'}}/>
+      <div className="fixed inset-0 pointer-events-none z-0" style={{backgroundImage:'linear-gradient(rgba(114,99,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(114,99,255,.025) 1px,transparent 1px)',backgroundSize:'60px 60px'}}/>
+      <div className="fixed pointer-events-none z-0" style={{width:500,height:500,top:-150,left:-150,borderRadius:'50%',background:'radial-gradient(circle,rgba(114,99,255,.08),transparent)',filter:'blur(60px)'}}/>
 
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between px-5 py-3 border-b border-[#1b2030]" style={{background:'rgba(10,13,20,.92)',backdropFilter:'blur(20px)'}}>
