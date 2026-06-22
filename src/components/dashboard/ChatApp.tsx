@@ -33,6 +33,7 @@ export default function ChatApp({user,initialCredits,models}:Props){
   const[selectedModel,setSelectedModel]=useState(models[0]?.name??'deepseek-chat')
   const[input,setInput]=useState('')
   const[streaming,setStreaming]=useState(false)
+  const[webSearch,setWebSearch]=useState(true)
   const bottomRef=useRef<HTMLDivElement>(null)
   const textareaRef=useRef<HTMLTextAreaElement>(null)
   const activeSession=sessions.find(s=>s.id===activeId)??null
@@ -76,7 +77,7 @@ export default function ChatApp({user,initialCredits,models}:Props){
       const{data:{session:chatSession}}=await createClient().auth.getSession()
       const headers:Record<string,string>={'Content-Type':'application/json'}
       if(chatSession?.access_token)headers['Authorization']=`Bearer ${chatSession.access_token}`
-      const res=await fetch('/api/chat',{method:'POST',headers,body:JSON.stringify({model:selectedModel,messages:msgs})})
+      const res=await fetch('/api/chat',{method:'POST',headers,body:JSON.stringify({model:selectedModel,messages:msgs,enableSearch:webSearch})})
       if(!res.ok){
         const e=await res.json()
         setSessions(p=>p.map(s=>s.id===sid?{...s,messages:[...s.messages,{role:'assistant',content:`错误：${e.error??'请求失败'}`}]}:s))
@@ -189,7 +190,7 @@ export default function ChatApp({user,initialCredits,models}:Props){
                 <div className="text-center mb-12">
                   <div className="w-[64px] h-[64px] rounded-[18px] flex items-center justify-center text-[28px] mx-auto mb-5" style={{background:'linear-gradient(135deg,rgba(114,99,255,.2),rgba(52,226,196,.2))',border:'1px solid rgba(114,99,255,.3)',boxShadow:'0 0 30px rgba(114,99,255,.15)'}}>枢</div>
                   <h2 className="font-bold text-[28px] mb-3 text-[#edeff7]" style={{fontFamily:'Space Grotesk,sans-serif'}}>有什么可以帮你的？</h2>
-                  <p className="text-[#8d93a8] text-[14px]">当前模型：<span className="text-[#7263ff] font-mono">{selectedModel}</span> · 联网搜索已开启</p>
+                  <p className="text-[#8d93a8] text-[14px]">当前模型：<span className="text-[#7263ff] font-mono">{selectedModel}</span> · 联网搜索{webSearch?<span className="text-[#34e2c4]">已开启</span>:<span className="text-[#565c70]">已关闭</span>}</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mb-8">
@@ -267,9 +268,11 @@ export default function ChatApp({user,initialCredits,models}:Props){
                 />
                 <div className="flex items-center justify-between px-3 pb-3 pt-1">
                   <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1.5 px-3 py-[5px] rounded-full border border-[#222838] text-[11.5px] text-[#34e2c4] bg-[#34e2c41a]">
-                      <span className="w-[5px] h-[5px] rounded-full bg-[#34e2c4] animate-pulse"/>联网搜索
-                    </div>
+                    <button onClick={()=>setWebSearch(v=>!v)}
+                      className={`flex items-center gap-1.5 px-3 py-[5px] rounded-full border text-[11.5px] transition-all duration-200 ${webSearch?'border-[#34e2c466] text-[#34e2c4] bg-[#34e2c41a] hover:bg-[#34e2c422]':'border-[#222838] text-[#565c70] hover:border-[#444] hover:text-[#8d93a8]'}`}>
+                      <span className={`w-[5px] h-[5px] rounded-full ${webSearch?'bg-[#34e2c4] animate-pulse':'bg-[#565c70]'}`}/>
+                      联网搜索
+                    </button>
                     <div className="hidden sm:flex items-center gap-1.5 px-3 py-[5px] rounded-full border border-[#222838] text-[11.5px] text-[#8d93a8]">
                       <span>🤖</span>{selectedModel.length>14?selectedModel.slice(0,14)+'…':selectedModel}
                     </div>
