@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root{--bg:#0a0d14;--bg-surface:#10141f;--bg-elevated:#161b29;--border:#222838;--border-soft:#1b2030;--violet:#7263ff;--teal:#34e2c4;--coral:#ff6f5e;--text-primary:#edeff7;--text-muted:#8d93a8;--text-dim:#565c70;}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text-primary);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 15% 8%,#7263ff22,transparent 40%),radial-gradient(circle at 85% 25%,#34e2c41a,transparent 40%);pointer-events:none;z-index:0;}
+@keyframes flowmove{to{stroke-dashoffset:-24;}}
+.flow-line{stroke-dasharray:5 7;animation:flowmove 1.4s linear infinite;}
+.grad-text{background:linear-gradient(100deg,#7263ff,#34e2c4);-webkit-background-clip:text;background-clip:text;color:transparent;}
