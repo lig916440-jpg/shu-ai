@@ -204,6 +204,20 @@ export default function ChatApp({user,initialCredits,models}:Props){
                   <p className="text-[#8d93a8] text-[14px]">当前模型：<span className="text-[#7263ff] font-mono">{selectedModel}</span> · 联网搜索{webSearch?<span className="text-[#34e2c4]">已开启</span>:<span className="text-[#565c70]">已关闭</span>}</p>
                 </div>
 
+                {/* AI 工具入口 */}
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  <Link href="/dashboard/image-gen" className="group rounded-[16px] p-5 border border-[#7263ff44] hover:border-[#7263ff99] transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_4px_24px_rgba(114,99,255,.2)] cursor-pointer" style={{background:'linear-gradient(135deg,rgba(114,99,255,.12),rgba(114,99,255,.05))'}}>
+                    <div className="text-[32px] mb-3">🎨</div>
+                    <div className="font-semibold text-[15px] text-[#edeff7] mb-1">图片生成</div>
+                    <p className="text-[12px] text-[#8d93a8]">xAI Aurora · 输入描述，秒出图</p>
+                  </Link>
+                  <Link href="/dashboard/video-gen" className="group rounded-[16px] p-5 border border-[#34e2c444] hover:border-[#34e2c499] transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_4px_24px_rgba(52,226,196,.15)] cursor-pointer" style={{background:'linear-gradient(135deg,rgba(52,226,196,.1),rgba(52,226,196,.04))'}}>
+                    <div className="text-[32px] mb-3">🎬</div>
+                    <div className="font-semibold text-[15px] text-[#edeff7] mb-1">视频生成</div>
+                    <p className="text-[12px] text-[#8d93a8]">Gemini Veo 2 · 时长/比例自选</p>
+                  </Link>
+                </div>
+
                 <div className="grid grid-cols-2 gap-3 mb-8">
                   {FEATURE_CARDS.map((f,i)=>(
                     <div key={i} className="rounded-[14px] p-4 border border-[#222838] hover:border-[#7263ff44] cursor-default transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_4px_20px_rgba(114,99,255,.08)]" style={{background:'rgba(16,20,31,.8)'}}>
